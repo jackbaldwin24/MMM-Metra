@@ -1,4 +1,4 @@
-Module.register("MMM-Template", {
+Module.register("MMM-Metra", {
 
   defaults: {
     exampleContent: ""
@@ -8,14 +8,14 @@ Module.register("MMM-Template", {
    * Apply the default styles.
    */
   getStyles() {
-    return ["template.css"]
+    return ["metra.css"]
   },
 
   /**
    * Pseudo-constructor for our module. Initialize stuff here.
    */
   start() {
-    this.templateContent = this.config.exampleContent
+    this.metraContent = this.config.exampleContent
 
     // set timeout for next random text
     setInterval(() => this.addRandomText(), 3000)
@@ -30,7 +30,7 @@ Module.register("MMM-Template", {
    */
   socketNotificationReceived: function (notification, payload) {
     if (notification === "EXAMPLE_NOTIFICATION") {
-      this.templateContent = `${this.config.exampleContent} ${payload.text}`
+      this.metraContent = `${this.config.exampleContent} ${payload.text}`
       this.updateDom()
     }
   },
@@ -40,7 +40,7 @@ Module.register("MMM-Template", {
    */
   getDom() {
     const wrapper = document.createElement("div")
-    wrapper.innerHTML = `<b>Title</b><br />${this.templateContent}`
+    wrapper.innerHTML = `<b>Title</b><br />${this.metraContent}`
 
     return wrapper
   },
@@ -56,8 +56,8 @@ Module.register("MMM-Template", {
    * @param {number} payload the payload type.
    */
   notificationReceived(notification, payload) {
-    if (notification === "TEMPLATE_RANDOM_TEXT") {
-      this.templateContent = `${this.config.exampleContent} ${payload}`
+    if (notification === "METRA_RANDOM_TEXT") {
+      this.metraContent = `${this.config.exampleContent} ${payload}`
       this.updateDom()
     }
   }
